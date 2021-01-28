@@ -15,6 +15,7 @@ FetchContent_Declare(
         glfw
         GIT_REPOSITORY https://github.com/glfw/glfw
         GIT_TAG 3.3.2
+        EXCLUDE_FROM_ALL
 )
 
 FetchContent_Declare(
@@ -24,6 +25,9 @@ FetchContent_Declare(
 )
 
 FetchContent_MakeAvailable(glew glfw imgui)
+
+set_property(DIRECTORY ${glew_SOURCE_DIR} PROPERTY EXCLUDE_FROM_ALL YES)
+set_property(DIRECTORY ${glfw_SOURCE_DIR} PROPERTY EXCLUDE_FROM_ALL YES)
 
 #-----------------------------------------------------------------------------------------------------------------------
 # Configure C++ version
@@ -76,5 +80,7 @@ target_link_libraries(${EXECUTABLE_NAME}
         PRIVATE
         glfw
         libglew_static
-        opengl32.a
+
+        $<$<CXX_COMPILER_ID:GNU>:opengl32.a>
+        $<$<CXX_COMPILER_ID:MSVC>:opengl32.lib>
         )
