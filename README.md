@@ -1,32 +1,44 @@
--pedantic generates warnings on glew and glfw
+# "hello, world" with Dear ImGui
 
-C++11 is required for Dear ImGui
-warning: anonymous variadic macros were introduced in C++11 [-Wvariadic-macros]
+[Dear ImGui](https://github.com/ocornut/imgui) is a great library... once you have managed to get a "hello, world". Indeed, Dear ImGui doesn't handle the display, keyboard and mouse by itself. A backend is required to do this:
 
-https://pyimgui.readthedocs.io/en/latest/guide/first-steps.html
+> You will need a backend to integrate Dear ImGui in your app. The backend passes mouse/keyboard/gamepad inputs and variety of settings to Dear ImGui, and is in charge of rendering the resulting vertices.
 
-## GLEW
+A backend is something like SDL or OpenGL, stuffs that I am absolutely not familiar with, so it took me a while just to display "hello, world".
 
+So here is an "hello, world" project so you can get started easily!
 
-glew-2.1.0
+## Run the project
 
-https://github.com/nigels-com/glew/releases/tag/glew-2.2.0
+The project builds with CMake.
 
-Build with CMake
+From the command line:
 
-        #        GIT_REPOSITORY https://github.com/nigels-com/glew.git
-        # See https://github.com/nigels-com/glew/issues/291
-        GIT_REPOSITORY https://github.com/Perlmint/glew-cmake.git   
-        
-                GIT_TAG glew-cmake-2.2.0
-                # Don't use the glew-2.2.0 tag
+```bash
+git clone https://github.com/Bktero/HelloWorldWithDearImGui
+cmake HelloWorldWithDearImGui\ -B build -G Ninja
+cmake --build build
+./build/HelloWorldWithDearImGui.exe
+```
 
+It will clone this repository, generate build files for Ninja with GCC, build the project and run the application. Of course, you can select the generator and compiler you want. I have successfully built the project on Windows 10 with mingw64/GCC 9.2 (with both Make and Ninja) and MSVC 2019.
 
-## GLFW
-https://www.glfw.org/download
+## Under the hood
 
-Windows pre-compiled binaries
+### Download dependencies from GitHub
 
-https://github.com/glfw/glfw/releases/download/3.3.2/glfw-3.3.2.bin.WIN64.zip
+The project uses the OpenGL + GLFW backend.
 
-glfw-3.3.2.bin.WIN64
+The `FetchContent` module is used in `CMakelists.txt` to download the dependencies from GitHub:
+
+* [Dear ImGui](https://github.com/ocornut/imgui), obviously.
+* [GLFW](https://github.com/glfw/glfw), used for the backend.
+* [GLEW](https://github.com/Perlmint/glew-cmake.git), also used for the backend.
+
+Note that the official GitHub for GLEW is [https://github.com/nigels-com/glew](https://github.com/nigels-com/glew) but it doesn't build properly with CMake. This [issue](https://github.com/nigels-com/glew/issues/291) suggests to use an alternative repository: [https://github.com/Perlmint/glew-cmake](https://github.com/Perlmint/glew-cmake).
+
+### C++ standard version
+
+Dear ImGui requires C++11. In C++98, GCC emits warnings:
+
+>`warning: anonymous variadic macros were introduced in C++11 [-Wvariadic-macros]`

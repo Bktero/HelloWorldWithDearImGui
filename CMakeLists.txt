@@ -15,7 +15,6 @@ FetchContent_Declare(
         glfw
         GIT_REPOSITORY https://github.com/glfw/glfw
         GIT_TAG 3.3.2
-        EXCLUDE_FROM_ALL
 )
 
 FetchContent_Declare(
@@ -26,6 +25,9 @@ FetchContent_Declare(
 
 FetchContent_MakeAvailable(glew glfw imgui)
 
+# FetchContent_Declare() normally supports EXCLUDE_FROM_ALL but apparently there is a bug
+# See https://gitlab.kitware.com/cmake/cmake/-/issues/20167
+# As a workaround, we exclude the directories manually
 set_property(DIRECTORY ${glew_SOURCE_DIR} PROPERTY EXCLUDE_FROM_ALL YES)
 set_property(DIRECTORY ${glfw_SOURCE_DIR} PROPERTY EXCLUDE_FROM_ALL YES)
 
@@ -80,7 +82,6 @@ target_link_libraries(${EXECUTABLE_NAME}
         PRIVATE
         glfw
         libglew_static
-
         $<$<CXX_COMPILER_ID:GNU>:opengl32.a>
         $<$<CXX_COMPILER_ID:MSVC>:opengl32.lib>
         )
