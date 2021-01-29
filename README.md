@@ -8,6 +8,8 @@ A backend is something like SDL or OpenGL, stuffs that I am absolutely not famil
 
 So here is an "hello, world" project so you can get started easily!
 
+![hello world](helloworld.png)
+
 ## Run the project
 
 The project builds with CMake.
