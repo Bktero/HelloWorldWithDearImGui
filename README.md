@@ -1,12 +1,12 @@
 # "hello, world" with Dear ImGui
 
-[Dear ImGui](https://github.com/ocornut/imgui) is a great library... once you have managed to get a "hello, world". Indeed, Dear ImGui doesn't handle the display, keyboard and mouse by itself. A backend is required to do this:
+[Dear ImGui](https://github.com/ocornut/imgui) is a great library but it may not be easy to get a simple "hello, world". Indeed, Dear ImGui doesn't handle the display, keyboard and mouse by itself. A backend is required to do this:
 
 > You will need a backend to integrate Dear ImGui in your app. The backend passes mouse/keyboard/gamepad inputs and variety of settings to Dear ImGui, and is in charge of rendering the resulting vertices.
 
-A backend is something like SDL or OpenGL, stuffs that I am absolutely not familiar with, so it took me a while just to display "hello, world".
+A backend is something like SDL or OpenGL, stuffs that I am absolutely not familiar with, so it took me a while just to display a simple text.
 
-So here is an "hello, world" project so you can get started easily!
+Here is an "hello, world" project so you can get started easily!
 
 ![hello world](helloworld.png)
 
