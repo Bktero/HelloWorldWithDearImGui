@@ -82,6 +82,6 @@ target_link_libraries(${EXECUTABLE_NAME}
         PRIVATE
         glfw
         libglew_static
-        $<$<CXX_COMPILER_ID:GNU>:opengl32.a>
+        $<$<AND:$<CXX_COMPILER_ID:GNU>,$<PLATFORM_ID:Windows>>:opengl32.a>
         $<$<CXX_COMPILER_ID:MSVC>:opengl32.lib>
         )

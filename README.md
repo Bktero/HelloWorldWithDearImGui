@@ -23,7 +23,12 @@ cmake --build build
 ./build/HelloWorldWithDearImGui.exe
 ```
 
-It will clone this repository, generate build files for Ninja with GCC, build the project and run the application. Of course, you can select the generator and compiler you want. I have successfully built the project on Windows 10 with mingw64/GCC 9.2 (with both Make and Ninja) and MSVC 2019.
+It will clone this repository, generate build files for Ninja with GCC, build the project and run the application. Of course, you can select the generator and compiler you want.
+
+I have successfully built the project:
+
+- on Windows 10 with mingw64/GCC 9.2 (with both Make and Ninja) and MSVC 2019 - last try = January 2021
+- on Debian Bookworm with GCC 12.2.0 (with both Make and Ninja) - last try = March 2025
 
 ## Under the hood
 
